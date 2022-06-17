@@ -7,17 +7,16 @@ import { UtilisateurEntity } from './entities/utilisateur.entity';
 export class UtilisateurService {
     constructor(
         @InjectRepository(UtilisateurEntity)
-        private readonly utilisateurRepository: Repository<UtilisateurEntity>,
-    ){ }
+        private  utilisateurRepository: Repository<UtilisateurEntity>,
+    ){}
 
     getAll(){
         //get all 
         return this.utilisateurRepository.find();
     }
-    getOne(userId){
+    getOne(Id):Promise<UtilisateurEntity>{
         // get one user
-
-        return this.utilisateurRepository.findOne(userId)
+        return this.utilisateurRepository.findOne(Id)
     }
     create(utilisateur:UtilisateurEntity):Promise<UtilisateurEntity>{
         // create utilsateur

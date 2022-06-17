@@ -15,7 +15,7 @@ import { UtilisateurModule } from './utilisateur/utilisateur.module';
       password:null,
       database:"agsam_db",
       synchronize: true,
-      logging:true,
+      // logging:true,
       entities:["dist/**/**.entity.{ts,js}"]
     }
     )

@@ -29,13 +29,13 @@ export class UtilisateurController {
 
     }
     @Put(":id")
-    async update(@Param('id') id :number,@Body() createUtilisateurDto:UtilisateurEntity){
+    async update(@Param() id :number,@Body() createUtilisateurDto:UtilisateurEntity){
         const response = await this.UtilisateurService.update(id,createUtilisateurDto);
         Logger.log('update utilisateur ', 'utilisateur controler');
         return response;
     }
     @Delete(":id")
-    async delete(@Param('id') id: number){
+    async delete(@Body() id: number){
         const response = await this.UtilisateurService.remove(id);
         Logger.log('delete utilisateur ', 'utilisateur controler');
         return response;

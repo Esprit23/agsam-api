@@ -15,6 +15,14 @@ export class UtilisateurEntity{
     @Column()
     email:string;
 
+    // fk_type_id 
+    @Column({type:'int'})
+    typeId:number
+ 
+    // photo de profil
+    @Column()
+    pp:string;
+
     @Column()
     password:string;
 }
