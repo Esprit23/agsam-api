@@ -1,8 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
+
+import { Profil } from "src/profil/entities/profil.entity";
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, OneToOne, JoinColumn } from "typeorm";
 
 @Entity('users')
-export class UtilisateurEntity{
+export class Utilisateur{
     @PrimaryGeneratedColumn({type:'int'})
     id:number;
 
@@ -15,14 +17,20 @@ export class UtilisateurEntity{
     @Column()
     email:string;
 
-    // fk_type_id 
-    @Column({type:'int'})
-    typeId:number
- 
-    // photo de profil
+    @Column({type:'boolean'})
+    isActive:boolean
+   
     @Column()
-    pp:string;
-
+    profilId:number
+ 
+    @OneToOne(()=>Profil,profil=>profil.user, {onDelete:"SET NULL"})
+    @JoinColumn()
+    profil:Profil;
+  
     @Column()
     password:string;
+
+    
 }
+
+

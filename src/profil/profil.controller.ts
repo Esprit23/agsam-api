@@ -1,19 +1,23 @@
 import { Body, Controller, Delete, Get, Logger, Param, Post, Put } from '@nestjs/common';
+import { ProfilService } from './profil.service';
 
 @Controller('profil')
 export class ProfilController {
 
+    constructor(private readonly profilService : ProfilService){}
 
     @Get()
-    findAll(){
+    async findAll(){
         Logger.log('get all profil', 'profil controler');
-        return `getAll Profil`
+        const rep = await this.profilService.getAll();
+        return rep
     }
 
     @Get(':id')
-    findOne(@Param("id") id :number){
+    async findOne(@Param("id") id :number){
         Logger.log(`get id ${id}`,'profil controler');
-        return [`ID ${id}`]
+        // const rep = await this.profilService.getOne(id);
+        return  [`ID ${id}`]
     }
 
     @Post()
