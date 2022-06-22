@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
+import { ProfilModule } from './profil/profil.module';
+import { DataSource } from 'typeorm';
 
 
 @Module({
@@ -14,14 +16,17 @@ import { UtilisateurModule } from './utilisateur/utilisateur.module';
       username:"root",
       password:null,
       database:"agsam_db",
-      synchronize: true,
-      // logging:true,
+      synchronize: false,
+      logging:true,
       entities:["dist/**/**.entity.{ts,js}"]
     }
-    )
+    ),
+    ProfilModule
     
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor( private dataSource: DataSource){}
+}

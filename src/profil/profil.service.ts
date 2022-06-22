@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProfilEntity as profil} from './entities/profil.entity';
+import { Profil } from './entities/profil.entity';
 
 @Injectable()
 export class ProfilService {
     constructor(
-        @InjectRepository(profil)
-        private profilRepository: Repository<profil>,
+        @InjectRepository(Profil)
+        private profilRepository: Repository<Profil>,
     ){}
 
-    getAll():Promise<profil[]>{
+    getAll():Promise<Profil[]>{
 
         return this.profilRepository.find();
     }
-    getOne(Id ):Promise<profil>{
+    async getOne({id}):Promise<Profil>{
 
-        return this.profilRepository.findOne(Id)
+        return this.profilRepository.findOne(id);
     }
 
-    create(Profile:profil):Promise<profil>{
+    create(Profile:Profil):Promise<Profil>{
 
-        return this.profilRepository.save(Profile)
+        return this.profilRepository.save(Profile);
     }
 
-    async update(id:number, Profile:profil) {
-         await this.profilRepository.update(id,Profile)
+    async update({ id, Profile }: { id: number; Profile: Profil; }) {
+         await this.profilRepository.update(id,Profile);
     }
 
     async remove(id:number):Promise<void> {
@@ -33,3 +33,5 @@ export class ProfilService {
         await this.profilRepository.delete(id)
     }
 }
+
+

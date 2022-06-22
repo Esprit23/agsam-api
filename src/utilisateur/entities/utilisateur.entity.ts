@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
+import * as crypto from 'crypto';
 
 @Entity('users')
-export class UtilisateurEntity{
+export class Utilisateur{
     @PrimaryGeneratedColumn({type:'int'})
     id:number;
 
@@ -15,14 +16,21 @@ export class UtilisateurEntity{
     @Column()
     email:string;
 
-    // fk_type_id 
-    @Column({type:'int'})
-    typeId:number
+    @Column({type:'boolean'})
+    isActive:boolean
  
     // photo de profil
     @Column()
-    pp:string;
+    pdp:string;
 
+    // @BeforeInsert()
+    // hashPassword() {
+    //   this.password = crypto.createHmac('sha256', this.password).digest('hex');
+    // }
     @Column()
     password:string;
+
+    
 }
+
+
