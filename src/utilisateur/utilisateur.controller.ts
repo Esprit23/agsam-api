@@ -9,9 +9,7 @@ export class UtilisateurController {
     constructor(private readonly UtilisateurService :UtilisateurService,
          private jwtService: JwtService){}
 
-    
 
-    
 
     @Get()
     async findAll(@Res() response) {
