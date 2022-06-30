@@ -49,9 +49,9 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(isAuthenticated)
-      // .exclude(
-      //   { path: '/:id', method: RequestMethod.GET }
-      // )
+      .exclude(
+        { path: '/:id', method: RequestMethod.GET }
+      )
       // .forRoutes(VideoController);
   }
   constructor( private dataSource: DataSource){}
